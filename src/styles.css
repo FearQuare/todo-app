@@ -142,6 +142,7 @@ body {
 
 #app {
     display: flex;
+    flex-wrap: wrap;
 }
 
 nav {
@@ -182,4 +183,10 @@ nav h1 {
 
 .profile-container:hover {
     cursor: pointer;
+}
+
+.sidebar {
+    width: 16rem;
+    height: calc(100vh - 4rem);
+    background-color: #41644A;
 }
