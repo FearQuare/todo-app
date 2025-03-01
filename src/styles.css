@@ -233,6 +233,18 @@ nav h1 {
     width: 12rem;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.workspace:hover {
+    cursor: pointer;
+    background-color: #F1F0E9;
+    color: #41644A;
+    transform: scale(1.05);
+}
+
+.workspace:active {
+    transform: translateY(-2px); /* Jumping effect */
 }
 
 .component {
