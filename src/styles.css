@@ -138,11 +138,16 @@ table {
 
 body {
     font-family: 'Garet', sans-serif;
+}
+
+#app {
     display: flex;
 }
 
 nav {
     flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100vw;
     height: 4rem;
     background-color: #E9762B;
     display: flex;

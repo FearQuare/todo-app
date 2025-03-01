@@ -1,5 +1,5 @@
 import profilePhoto from "../../assets/profile.jpg"
-export default function Navbar(app) {
+export default function Navbar() {
     // Creating the nav element
     const navbar = document.createElement("nav");
 
@@ -18,5 +18,5 @@ export default function Navbar(app) {
     profileContainer.appendChild(profileImage);
     navbar.appendChild(profileContainer);
 
-    app.appendChild(navbar);
+    return navbar;
 }
