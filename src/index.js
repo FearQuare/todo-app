@@ -6,3 +6,4 @@ import Sidebar from "./modules/ui/sidebar";
 const app = document.querySelector("#app");
 app.appendChild(Navbar());
 app.appendChild(Sidebar());
+app.appendChild(MainPage());
