@@ -238,7 +238,6 @@ nav h1 {
 .component {
     width: calc(100vw - 16rem);
     height: calc(100vh - 4rem);
-    background-color: #F1F0E9;
 }
 
 .main {
