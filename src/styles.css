@@ -190,3 +190,47 @@ nav h1 {
     height: calc(100vh - 4rem);
     background-color: #41644A;
 }
+
+.workspace-container {
+    margin: 1.25rem;
+    margin-top: 2rem;
+}
+
+.workspace-container h1 {
+    font-size: 1.25rem;
+    color: #F1F0E9;
+}
+
+.add-workspace-button {
+    margin: 1rem;
+    width: 12rem;
+    height: 2rem;
+    font-family: 'Garet', sans-serif;
+    border-radius: 2rem;
+    border-style: none;
+    background-color: #F1F0E9;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-workspace-button:hover {
+    cursor: pointer;
+    background-color: #D9D7CE;
+    transform: scale(1.05);
+}
+
+.add-workspace-button:active {
+    transform: translateY(-2px); /* Jumping effect */
+}
+
+.workspace {
+    display: flex;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    color: #F1F0E9;
+    border: 1px solid #F1F0E9;
+    border-radius: 0.5rem;
+    height: 2rem;
+    width: 12rem;
+    justify-content: center;
+    align-items: center;
+}
