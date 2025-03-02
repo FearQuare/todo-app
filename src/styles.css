@@ -263,3 +263,33 @@ nav h1 {
     align-items: center;
     overflow: scroll;
 }
+
+.workspace-name {
+    display: flex;
+    margin: 2rem 0 0 2rem;
+    font-size: 1.5rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.dark-icon {
+    filter: brightness(0) invert(0);
+}
+
+.workspace-name .edit-button {
+    background-color: #4681f4;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-style: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.workspace-name .edit-button:hover {
+    background-color: #286bf0;
+    transform: scale(1.05);
+}
+
+.workspace-name .edit-button:active {
+    transform: translateY(-2px);
+}
