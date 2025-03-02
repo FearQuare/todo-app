@@ -1,5 +1,6 @@
 // ui of the workspaces section
 import { addWorkspace, getExistingWorkspaces } from "../workspaces/workspaceController";
+import WorkspacePage from "../workspacePage";
 
 export default function Workspace() {
     // Create the workspaces section
@@ -20,6 +21,12 @@ export default function Workspace() {
     // get existing workspaces and list them
     const existingWorkspaces = getExistingWorkspaces();
 
+    function addEventListenerToWorkspace(workspaceInstance) {
+        workspaceInstance.addEventListener("click", () => {
+            app.appendChild(WorkspacePage(workspaceInstance.id));
+        });
+    }
+
     existingWorkspaces.forEach(workspace => {
         const workspaceInstance = document.createElement("div");
         workspaceInstance.classList.add("workspace");
@@ -27,6 +34,8 @@ export default function Workspace() {
         workspaceInstance.innerText = workspace.name;
 
         workspacesSection.appendChild(workspaceInstance);
+
+        addEventListenerToWorkspace(workspaceInstance);
     });
 
     addButton.addEventListener("click", () => {
@@ -38,6 +47,8 @@ export default function Workspace() {
         workspaceInstance.innerText = newWorkspace.name;
 
         workspacesSection.appendChild(workspaceInstance);
+
+        addEventListenerToWorkspace(workspaceInstance);
     });
 
     return workspacesSection;

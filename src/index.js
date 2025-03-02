@@ -2,28 +2,48 @@ import "./styles.css";
 import MainPage from "./modules/mainPage";
 import Navbar from "./modules/ui/navbar";
 import Sidebar from "./modules/ui/sidebar";
-import WorkspacePage from "./modules/workspacePage";
-
-function addWorkspaceEventListeners() {
-    const workspaces = document.querySelectorAll(".workspace");
-    workspaces.forEach(workspace => {
-        workspace.addEventListener("click", () => {
-            app.appendChild(WorkspacePage(workspace.id));
-        });
-    });
-}
 
 const app = document.querySelector("#app");
 app.appendChild(Navbar());
 app.appendChild(Sidebar());
 app.appendChild(MainPage());
 
-addWorkspaceEventListeners();
+function getCurrentWorkspaces() {
+    const workspaces = document.querySelectorAll(".workspace");
+    return workspaces
+}
 
-const addWorkspaceButton = document.querySelector(".add-workspace-button");
-addWorkspaceButton.addEventListener("click", addWorkspaceEventListeners);
+let currentWorkspaces = getCurrentWorkspaces();
+
 
 const logo = document.querySelector(".todo-logo");
 logo.addEventListener("click", () => {
     window.location.reload();
+});
+
+currentWorkspaces.forEach(workspace => {
+    workspace.addEventListener("click", () => {
+        // if there is a workspace that is already selected remove the styling from it
+        if (document.querySelector(".active-workspace") != null) {
+            const prevSelectedWorkspace = document.querySelector(".active-workspace");
+            prevSelectedWorkspace.classList.remove("active-workspace");
+        }
+
+        workspace.classList.add("active-workspace");
+    })
+});
+
+const addWorkspaceButton = document.querySelector(".add-workspace-button");
+addWorkspaceButton.addEventListener("click", () => {
+    currentWorkspaces = getCurrentWorkspaces();
+    let lastAddedWorkspace = currentWorkspaces[currentWorkspaces.length - 1];
+    lastAddedWorkspace.addEventListener("click", () => {
+        // if there is a workspace that is already selected remove the styling from it
+        if (document.querySelector(".active-workspace") != null) {
+            const prevSelectedWorkspace = document.querySelector(".active-workspace");
+            prevSelectedWorkspace.classList.remove("active-workspace");
+        }
+
+        lastAddedWorkspace.classList.add("active-workspace");
+    })
 });

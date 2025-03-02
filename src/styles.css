@@ -247,6 +247,11 @@ nav h1 {
     transform: translateY(-2px); /* Jumping effect */
 }
 
+.active-workspace {
+    background-color: #F1F0E9;
+    color: #41644A;
+}
+
 .component {
     width: calc(100vw - 16rem);
     height: calc(100vh - 4rem);
