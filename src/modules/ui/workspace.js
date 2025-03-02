@@ -23,6 +23,7 @@ export default function Workspace() {
     existingWorkspaces.forEach(workspace => {
         const workspaceInstance = document.createElement("div");
         workspaceInstance.classList.add("workspace");
+        workspaceInstance.id = workspace.id;
         workspaceInstance.innerText = workspace.name;
 
         workspacesSection.appendChild(workspaceInstance);
@@ -33,6 +34,7 @@ export default function Workspace() {
 
         const workspaceInstance = document.createElement("div");
         workspaceInstance.classList.add("workspace");
+        workspaceInstance.id = newWorkspace.id;
         workspaceInstance.innerText = newWorkspace.name;
 
         workspacesSection.appendChild(workspaceInstance);

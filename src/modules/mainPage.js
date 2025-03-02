@@ -13,6 +13,6 @@ export default function MainPage() {
 
     // append the img element to the mainPage div
     mainPage.appendChild(img);
-    
+
     return mainPage;
 }
