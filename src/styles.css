@@ -268,7 +268,6 @@ nav h1 {
     display: flex;
     margin: 2rem 0 0 2rem;
     font-size: 1.5rem;
-    gap: 1rem;
     align-items: center;
 }
 
@@ -282,6 +281,7 @@ nav h1 {
     height: 2.25rem;
     border-style: none;
     border-radius: 0.25rem;
+    margin-left: 1rem;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -292,4 +292,67 @@ nav h1 {
 
 .workspace-name .edit-button:active {
     transform: translateY(-2px);
+}
+
+.workspace-name .text-input {
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    border-style: none;
+    outline: none;
+    background-color: #F1F0E9;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    font-family: 'Garet', sans-serif;
+    padding: 0.25rem;
+    transition: transform 0.3s ease;
+    padding-left: 1rem;
+}
+
+.workspace-name .text-input:focus {
+    transform: scale(1.05);
+}
+
+.workspace-name .apply-button {
+    background-color: #33b249;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0.25rem;
+    border-style: none;
+    border-radius: 0.25rem;
+    margin-left: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.workspace-name .apply-button:hover {
+    background-color: #16912a;
+    transform: scale(1.05);
+}
+
+.workspace-name .apply-button:active {
+    transform: translateY(-2px);
+}
+
+.workspace-name .reject-button {
+    background-color: #ED0800;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0.25rem;
+    border-style: none;
+    border-radius: 0.25rem;
+    margin-left: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.workspace-name .reject-button:hover {
+    background-color: #a80600;
+    transform: scale(1.05);
+}
+
+.workspace-name .reject-button:active {
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none;
 }

@@ -16,3 +16,12 @@ export function getExistingWorkspaces() {
     const workspaces = getWorkspaces();
     return workspaces;
 }
+
+export function updateWorkspaceName(id, newName){
+    let workspaces = getWorkspaces();
+
+    workspaces = workspaces.map(workspace => workspace.id == id ? { ...workspace, name: newName } : workspace);
+    console.log(workspaces);
+
+    saveWorkspaces(workspaces);
+}
