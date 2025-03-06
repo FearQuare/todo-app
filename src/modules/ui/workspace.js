@@ -21,12 +21,6 @@ export default function Workspace() {
     // get existing workspaces and list them
     const existingWorkspaces = getExistingWorkspaces();
 
-    function addEventListenerToWorkspace(workspaceInstance) {
-        workspaceInstance.addEventListener("click", () => {
-            app.appendChild(WorkspacePage(workspaceInstance.id));
-        });
-    }
-
     existingWorkspaces.forEach(workspace => {
         const workspaceInstance = document.createElement("div");
         workspaceInstance.classList.add("workspace");
@@ -52,4 +46,10 @@ export default function Workspace() {
     });
 
     return workspacesSection;
+}
+
+function addEventListenerToWorkspace(workspaceInstance) {
+    workspaceInstance.addEventListener("click", () => {
+        app.appendChild(WorkspacePage(workspaceInstance.id));
+    });
 }

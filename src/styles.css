@@ -257,6 +257,12 @@ nav h1 {
     height: calc(100vh - 4rem);
 }
 
+.workspace-component {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -355,4 +361,34 @@ nav h1 {
 
 .hidden {
     display: none;
+}
+
+.add-section-section .add-section-button {
+    background-color: #4681f4;
+    width: 10rem;
+    height: 2.25rem;
+    padding: 0.25rem;
+    border-style: none;
+    border-radius: 0.25rem;
+    margin-left: 0.25rem;
+    color: #F1F0E9;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-section-section .add-section-button:hover {
+    background-color: #286bf0;
+    transform: scale(1.05);
+}
+
+.add-section-section .add-section-button:active {
+    transform: translateY(-2px);
+}
+
+.add-section-section {
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.sections {
+    width: 100vw;
 }

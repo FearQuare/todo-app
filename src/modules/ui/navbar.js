@@ -6,7 +6,7 @@ export default function Navbar() {
     // Creating a heading element for displaying app name
     const h1 = document.createElement("h1");
     h1.classList.add("todo-logo");
-    h1.innerText = "Todo";
+    h1.innerText = "Daily Todo Tracker";
     navbar.appendChild(h1);
 
     // Creating the profile photo container

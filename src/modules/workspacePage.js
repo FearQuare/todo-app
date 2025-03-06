@@ -4,6 +4,7 @@ import { getExistingWorkspaces, updateWorkspaceName } from "./workspaces/workspa
 import EditIcon from "../assets/icons/edit-icon.svg";
 import CheckBoxIcon from "../assets/icons/check-box-icon.svg";
 import RejectIcon from "../assets/icons/reject-icon.svg";
+import { addSectionToWorkspace } from "./workspaces/sections/sectionController";
 
 export default function WorkspacePage(workspaceId) {
     // get the previous div and remove it because we need space to show our workspace
@@ -64,7 +65,20 @@ export default function WorkspacePage(workspaceId) {
     nameSection.appendChild(applyButton);
     nameSection.appendChild(rejectButton);
 
+    const addSectionSection = document.createElement("div");
+    addSectionSection.classList.add("add-section-section");
+    const addSectionButton = document.createElement("button");
+    addSectionButton.classList.add("add-section-button");
+    addSectionButton.innerText = "Add A Section";
+
+    addSectionSection.appendChild(addSectionButton);
+
+    const sections = document.createElement("div");
+    sections.classList.add("sections");
+
     workspaceComponent.appendChild(nameSection);
+    workspaceComponent.appendChild(addSectionSection);
+    workspaceComponent.appendChild(sections);
 
     editButton.addEventListener("click", () => {
         name.classList.add("hidden");
@@ -72,6 +86,7 @@ export default function WorkspacePage(workspaceId) {
         nameInput.classList.remove("hidden");
         applyButton.classList.remove("hidden");
         rejectButton.classList.remove("hidden");
+        addSectionButton.classList.add("hidden");
     });
 
     rejectButton.addEventListener("click", () => {
@@ -81,10 +96,10 @@ export default function WorkspacePage(workspaceId) {
         rejectButton.classList.add("hidden");
         name.classList.remove("hidden");
         editButton.classList.remove("hidden");
+        addSectionButton.classList.remove("hidden");
     });
 
     applyButton.addEventListener("click", () => {
-        console.log(nameInput.value);
         updateWorkspaceName(workspaceId, nameInput.value);
         name.innerText = nameInput.value;
         nameInput.classList.add("hidden");
@@ -92,8 +107,20 @@ export default function WorkspacePage(workspaceId) {
         rejectButton.classList.add("hidden");
         name.classList.remove("hidden");
         editButton.classList.remove("hidden");
+        addSectionButton.classList.remove("hidden");
         const sidebarDisplay = document.querySelectorAll(".workspace");
         sidebarDisplay[workspaceId].innerText = nameInput.value;
+    });
+
+    addSectionButton.addEventListener("click", () => {
+        let sectionName = prompt("Please enter the name of the section");
+        if (sectionName == null || sectionName == "") {
+            window.alert("Section name cannot be empty!");
+        } else {
+            let newSection = addSectionToWorkspace(sectionName, workspaceId);
+            let date = new Date(newSection.startDay);
+            window.alert(`${newSection.name} section added to the ${newSection.workspaceId} id workspace at ${date.getDay() == 5 ? "friday" : "zort"}`);
+        }
     });
 
     return workspaceComponent;
