@@ -11,6 +11,6 @@ export function addSectionToWorkspace(name, workspaceId) {
 }
 
 export function getExistingSectionsWithWorkspaceId(workspaceId) {
-    const sections = getSections;
+    const sections = getSections();
     return sections.filter(section => section.workspaceId == workspaceId);
 }
