@@ -17,8 +17,8 @@ export default function WorkspacePage(workspaceId) {
     workspaceComponent.classList.add("workspace-component");
 
     // retrieve all workspaces and pick the one we needed.
-    const workspaces = getExistingWorkspaces();
-    const workspaceToBeDisplayed = workspaces[workspaceId];
+    let workspaces = getExistingWorkspaces();
+    let workspaceToBeDisplayed = workspaces[workspaceId];
 
     // display the name of the choosen workspace
     const nameSection = document.createElement("div");
@@ -114,6 +114,8 @@ export default function WorkspacePage(workspaceId) {
 
     applyButton.addEventListener("click", () => {
         updateWorkspaceName(workspaceId, nameInput.value);
+        workspaces = getExistingWorkspaces();
+        workspaceToBeDisplayed = workspaces[workspaceId];
         name.innerText = nameInput.value;
         nameInput.classList.add("hidden");
         applyButton.classList.add("hidden");
@@ -149,6 +151,7 @@ function displaySection(section) {
 
     const streak = document.createElement("div");
     streak.classList.add("streak");
+    streak.textContent = new Date(section.startDay).toLocaleDateString();
 
     var flameText = String.fromCodePoint(0x1F525);
     const flame = document.createElement("p");
