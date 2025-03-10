@@ -145,23 +145,28 @@ function displaySection(section) {
     const sectionElement = document.createElement("div");
     sectionElement.classList.add("section");
     sectionElement.id = section.id;
-    
+
     const sectionName = document.createElement("h1");
     sectionName.innerText = section.name;
 
-    const streak = document.createElement("div");
-    streak.classList.add("streak");
-    streak.textContent = new Date(section.startDay).toLocaleDateString();
+    const blocksContainer = document.createElement("div");
+    blocksContainer.classList.add("blocks-container");
 
-    var flameText = String.fromCodePoint(0x1F525);
-    const flame = document.createElement("p");
-    flame.classList.add("flame");
-    flame.innerText = flameText;
+    let keys = Object.keys(section.days)
 
-    streak.appendChild(flame);
+    if (keys.length >= 7) {
+        for (let i = 6; i >= 0; i--) {
+            console.log(section.days[keys[(keys.length - 1) - i]]);
+            if (section.days[keys[(keys.length - 1) - i]] == 0) {
+                let uncheckedBlock = document.createElement("div");
+                uncheckedBlock.classList.add("unchecked-block");
+                blocksContainer.appendChild(uncheckedBlock);
+            }
+        }
+    }
 
-    sectionElement.append(sectionName);
-    sectionElement.append(streak);
+    sectionElement.appendChild(sectionName);
+    sectionElement.appendChild(blocksContainer);
 
     return sectionElement;
 }

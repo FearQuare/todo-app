@@ -7,6 +7,7 @@ export function addSectionToWorkspace(name, workspaceId) {
     const newSection = new Section(name, id, workspaceId);
     sections.push(newSection);
     saveSections(sections);
+    updateDays();
     return newSection;
 }
 
@@ -17,7 +18,7 @@ export function getExistingSectionsWithWorkspaceId(workspaceId) {
     return filteredSections;
 }
 
-function updateDays() {
+function updateDays() { // burayla ilgili gün loglama hakkında sıkıntımız var mesela 7-8-9 diye giderken ayların günleri bi anda 11'e atladı. Bu hata ile ayın 11'i gece 1 gibi karşılaştım.
     const sections = getSections();
     sections.forEach(section => {
         let startDay = new Date(section.startDay);
@@ -39,4 +40,8 @@ function updateDays() {
         }
     });
     saveSections(sections);
+}
+
+export function setDone(sectionId) {
+    
 }
