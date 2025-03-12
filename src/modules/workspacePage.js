@@ -205,9 +205,10 @@ function displaySection(section) {
     setDoneButton.addEventListener("click", () => {
         setDone(section.id);
         const blocks = document.querySelectorAll(`.section-${section.id}`);
-        if (blocks[blocks.length - 1].classList[0] != "checked-block") {
-            blocks[blocks.length - 1].classList.remove("unchecked-block");
-            blocks[blocks.length - 1].classList.add("checked-block");
+        const lastBlock = blocks[blocks.length -1];
+        if (!lastBlock.classList.contains("checked-block")) {
+            lastBlock.classList.remove("unchecked-block");
+            lastBlock.classList.add("checked-block");
         }
     });
 
@@ -221,9 +222,10 @@ function displaySection(section) {
     setUndoneButton.addEventListener("click", () => {
         setUndone(section.id);
         const blocks = document.querySelectorAll(`.section-${section.id}`);
-        if (blocks[blocks.length - 1].classList[0] == "checked-block") {
-            blocks[blocks.length - 1].classList.remove("checked-block");
-            blocks[blocks.length - 1].classList.add("unchecked-block");
+        const lastBlock = blocks[blocks.length -1];
+        if (lastBlock.classList.contains("checked-block")) {
+            lastBlock.classList.remove("checked-block");
+            lastBlock.classList.add("unchecked-block");
         }
     })
 
