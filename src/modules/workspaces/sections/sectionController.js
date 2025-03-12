@@ -35,7 +35,7 @@ function updateDays() { // burayla ilgili gün loglama hakkında sıkıntımız 
                 if (!(dateString in section.days)) {
                     section.days[dateString] = 0;
                 }
-                currentDate = new Date(currentDate.getTime() + 86400000);
+                currentDate.setDate(currentDate.getDate() + 1);
             }
         }
     });
@@ -43,5 +43,19 @@ function updateDays() { // burayla ilgili gün loglama hakkında sıkıntımız 
 }
 
 export function setDone(sectionId) {
-    
+    const sections = getSections();
+    const itemToSetDone = sections.find(section => section.id == sectionId);
+    let keys = Object.keys(itemToSetDone.days);
+    let lastKey = keys[keys.length - 1];
+    itemToSetDone.days[lastKey] = 1;
+    saveSections(sections);
+}
+
+export function setUndone(sectionId) {
+    const sections = getSections();
+    const itemToSetUndone = sections.find(section => section.id == sectionId);
+    let keys = Object.keys(itemToSetUndone.days);
+    let lastKey = keys[keys.length - 1];
+    itemToSetUndone.days[lastKey] = 0;
+    saveSections(sections);
 }

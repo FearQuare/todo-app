@@ -4,7 +4,8 @@ import { getExistingWorkspaces, updateWorkspaceName } from "./workspaces/workspa
 import EditIcon from "../assets/icons/edit-icon.svg";
 import CheckBoxIcon from "../assets/icons/check-box-icon.svg";
 import RejectIcon from "../assets/icons/reject-icon.svg";
-import { addSectionToWorkspace, getExistingSectionsWithWorkspaceId } from "./workspaces/sections/sectionController";
+import TickIcon from "../assets/icons/tick-icon.svg";
+import { addSectionToWorkspace, getExistingSectionsWithWorkspaceId, setDone, setUndone } from "./workspaces/sections/sectionController";
 
 export default function WorkspacePage(workspaceId) {
     // get the previous div and remove it because we need space to show our workspace
@@ -133,7 +134,6 @@ export default function WorkspacePage(workspaceId) {
             window.alert("Section name cannot be empty!");
         } else {
             let newSection = addSectionToWorkspace(sectionName, workspaceId);
-            let date = new Date(newSection.startDay);
             sections.appendChild(displaySection(newSection));
         }
     });
@@ -156,17 +156,82 @@ function displaySection(section) {
 
     if (keys.length >= 7) {
         for (let i = 6; i >= 0; i--) {
-            console.log(section.days[keys[(keys.length - 1) - i]]);
             if (section.days[keys[(keys.length - 1) - i]] == 0) {
                 let uncheckedBlock = document.createElement("div");
                 uncheckedBlock.classList.add("unchecked-block");
+                uncheckedBlock.classList.add("block")
+                uncheckedBlock.classList.add(`section-${section.id}`);
+                uncheckedBlock.id = i;
                 blocksContainer.appendChild(uncheckedBlock);
+            } else {
+                let checkedBlock = document.createElement("div");
+                checkedBlock.classList.add("checked-block");
+                checkedBlock.classList.add("block");
+                checkedBlock.classList.add(`section-${section.id}`);
+                checkedBlock.id = i;
+                blocksContainer.appendChild(checkedBlock);
+            }
+        }
+    } else {
+        for (let i= (keys.length - 1); i >= 0; i--) {
+            if (section.days[keys[(keys.length - 1) - i]] == 0) {
+                let uncheckedBlock = document.createElement("div");
+                uncheckedBlock.classList.add("unchecked-block");
+                uncheckedBlock.classList.add("block")
+                uncheckedBlock.classList.add(`section-${section.id}`);
+                uncheckedBlock.id = i;
+                blocksContainer.appendChild(uncheckedBlock);
+            } else {
+                let checkedBlock = document.createElement("div");
+                checkedBlock.classList.add("checked-block");
+                checkedBlock.classList.add("block");
+                checkedBlock.classList.add(`section-${section.id}`);
+                checkedBlock.id = i;
+                blocksContainer.appendChild(checkedBlock);
             }
         }
     }
 
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("buttons-container");
+
+    const setDoneButton = document.createElement("button");
+    setDoneButton.classList.add("set-done-button");
+    const tick = document.createElement("img");
+    tick.src = TickIcon;
+
+    setDoneButton.appendChild(tick);
+
+    setDoneButton.addEventListener("click", () => {
+        setDone(section.id);
+        const blocks = document.querySelectorAll(`.section-${section.id}`);
+        if (blocks[blocks.length - 1].classList[0] != "checked-block") {
+            blocks[blocks.length - 1].classList.remove("unchecked-block");
+            blocks[blocks.length - 1].classList.add("checked-block");
+        }
+    });
+
+    const setUndoneButton = document.createElement("button");
+    setUndoneButton.classList.add("set-undone-button");
+    const cross = document.createElement("img");
+    cross.src = RejectIcon;
+
+    setUndoneButton.appendChild(cross);
+
+    setUndoneButton.addEventListener("click", () => {
+        setUndone(section.id);
+        const blocks = document.querySelectorAll(`.section-${section.id}`);
+        if (blocks[blocks.length - 1].classList[0] == "checked-block") {
+            blocks[blocks.length - 1].classList.remove("checked-block");
+            blocks[blocks.length - 1].classList.add("unchecked-block");
+        }
+    })
+
+    buttonsContainer.appendChild(setDoneButton);
+    buttonsContainer.appendChild(setUndoneButton);
+
     sectionElement.appendChild(sectionName);
     sectionElement.appendChild(blocksContainer);
-
+    sectionElement.appendChild(buttonsContainer);
     return sectionElement;
 }
