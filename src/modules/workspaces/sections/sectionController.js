@@ -6,10 +6,8 @@ export function addSectionToWorkspace(name, workspaceId) {
     const id = sections.length;
     const newSection = new Section(name, id, workspaceId);
     
-    // Set startDay to current date's 00:00:00 for GMT+3 timezone as Unix timestamp
     const now = new Date();
-    const gmt3Offset = 3 * 60 * 60 * 1000;
-    const startDay = new Date(now.getTime() + gmt3Offset);
+    const startDay = new Date(now.getTime());
     startDay.setHours(0, 0, 0, 0);
     newSection.startDay = startDay.getTime();
 
