@@ -1,9 +1,9 @@
 export default class Section {
-    constructor(name, id, workspaceId, startDay = Date.now()) {
+    constructor(name, id, workspaceId) {
         this.name = name;
         this.id = id;
         this.workspaceId = workspaceId;
-        this.startDay = startDay;
+        this.startDay = null;
         this.days = {};
     }
 }
