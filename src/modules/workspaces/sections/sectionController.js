@@ -11,9 +11,10 @@ export function addSectionToWorkspace(name, workspaceId) {
     startDay.setHours(0, 0, 0, 0);
     newSection.startDay = startDay.getTime();
 
+    newSection.days[`${startDay.getDate()}-${startDay.getMonth() + 1}-${startDay.getFullYear()}`] = 0;
+
     sections.push(newSection);
     saveSections(sections);
-    updateDays();
     return newSection;
 }
 
@@ -24,7 +25,7 @@ export function getExistingSectionsWithWorkspaceId(workspaceId) {
     return filteredSections;
 }
 
-function updateDays() {
+export function updateDays() {
     const sections = getSections();
     sections.forEach(section => {
         let startDay = new Date(section.startDay);

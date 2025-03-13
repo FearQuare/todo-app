@@ -5,7 +5,7 @@ import EditIcon from "../assets/icons/edit-icon.svg";
 import CheckBoxIcon from "../assets/icons/check-box-icon.svg";
 import RejectIcon from "../assets/icons/reject-icon.svg";
 import TickIcon from "../assets/icons/tick-icon.svg";
-import { addSectionToWorkspace, getExistingSectionsWithWorkspaceId, setDone, setUndone } from "./workspaces/sections/sectionController";
+import { addSectionToWorkspace, getExistingSectionsWithWorkspaceId, setDone, setUndone, updateDays } from "./workspaces/sections/sectionController";
 
 export default function WorkspacePage(workspaceId) {
     // get the previous div and remove it because we need space to show our workspace
