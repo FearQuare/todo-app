@@ -498,3 +498,18 @@ nav h1 {
     transform: scale(1.05);
     cursor: pointer;
 }
+
+.streak-container {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.streak-container h1 {
+    font-size: 3rem;
+}

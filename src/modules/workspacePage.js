@@ -1,5 +1,3 @@
-// actually, instead of getting all the workspaces each time, I can write a function which gets the specific
-// workspace by id
 import { getExistingWorkspaces, updateWorkspaceName } from "./workspaces/workspaceController";
 import EditIcon from "../assets/icons/edit-icon.svg";
 import CheckBoxIcon from "../assets/icons/check-box-icon.svg";
@@ -142,18 +140,51 @@ export default function WorkspacePage(workspaceId) {
 }
 
 function displaySection(section) {
+    // selecting the keys of the days dictionary
+    let keys = Object.keys(section.days)
+
+    // creating the section container
     const sectionElement = document.createElement("div");
     sectionElement.classList.add("section");
     sectionElement.id = section.id;
 
+    // displaying the name of the section
     const sectionName = document.createElement("h1");
     sectionName.innerText = section.name;
 
+    // streak container
+    const streakContainer = document.createElement("div");
+    streakContainer.classList.add("streak-container");
+
+    const fireText = document.createElement("h1");
+    fireText.innerText = "🔥";
+
+    streakContainer.appendChild(fireText);
+
+    const streakCount = document.createElement("p");
+
+    // count how many days there is
+    const daysCount = keys.length;
+
+    let streakCounter = 0;
+    for (let i = 0; i < daysCount; i++) {
+        let day = section.days[keys[i]];
+        if (day == 0) {
+            streakCounter = 0;
+        } else {
+            streakCounter += 1;
+        }
+    }
+
+    streakCount.innerText = streakCounter;
+
+    streakContainer.appendChild(streakCount);
+
+    // container for days
     const blocksContainer = document.createElement("div");
     blocksContainer.classList.add("blocks-container");
 
-    let keys = Object.keys(section.days)
-
+    // displaying the last checked and unchecked days
     if (keys.length >= 7) {
         for (let i = 6; i >= 0; i--) {
             if (section.days[keys[(keys.length - 1) - i]] == 0) {
@@ -192,9 +223,11 @@ function displaySection(section) {
         }
     }
 
+    // buttons container for check/uncheck
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("buttons-container");
 
+    // creating the set done button
     const setDoneButton = document.createElement("button");
     setDoneButton.classList.add("set-done-button");
     const tick = document.createElement("img");
@@ -212,6 +245,7 @@ function displaySection(section) {
         }
     });
 
+    // creating the set undone button
     const setUndoneButton = document.createElement("button");
     setUndoneButton.classList.add("set-undone-button");
     const cross = document.createElement("img");
@@ -229,11 +263,13 @@ function displaySection(section) {
         }
     })
 
-    buttonsContainer.appendChild(setDoneButton);
-    buttonsContainer.appendChild(setUndoneButton);
+    // appending the items above to the section element
 
     sectionElement.appendChild(sectionName);
+    sectionElement.appendChild(streakContainer);
     sectionElement.appendChild(blocksContainer);
     sectionElement.appendChild(buttonsContainer);
+    buttonsContainer.appendChild(setDoneButton);
+    buttonsContainer.appendChild(setUndoneButton);
     return sectionElement;
 }
